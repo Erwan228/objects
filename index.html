@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            user-select: none;
+        }
+        table, tr, th, td {
+            border: 2px solid rgb(0, 255, 0);
+            border-collapse: collapse;
+        }
+        td, th {
+            padding: 4px;
+        }
+        th {
+            background-color: red;
+            color: purple;
+        }
+        tr:nth-child(even) {
+            background: rgba(0, 0, 255, 0.411);
+        }
+
+    </style>
+</head>
+<body>
+    <table>
+        <div id="tasksTable"></div>
+        
+        <tr>
+            <td>Handle til middag</td>
+            <td><input type="checkbox"></td>
+        </tr>
+        <tr>
+            <td>Lage middag</td>
+            <td><input type="checkbox"td>
+        </tr>
+        <tr>
+            <td>Pusse tenna</td>
+            <td><input type="checkbox"td>
+        </tr>
+        <tr>
+            <td>Dusje</td>
+            <td><input type="checkbox"td>
+        </tr>
+        <tr>
+            <td>Sosialisere</td>
+            <td><input type="checkbox"td>
+        </tr>
+        <tr>
+            <td>Varm drikke</td>
+            <td><input type="checkbox"td>
+        </tr>
+        <tr>
+            <td>Game</td>
+            <td><input type="checkbox"td>
+        </tr>
+        <tr>
+            <td>Uthvilt</td>
+            <td><input type="checkbox"td>
+        </tr>
+        <tr>
+            <td>Mental helse</td>
+            <td><input type="checkbox"td>
+        </tr>
+    </table>
+</body>
+<script>
+    //Model
+    let taskDescriptionInput = document.g
+    let tasks = [
+        {description: 'Handle til middag', isDone: false},
+        {description: 'Lage middag', isDone: false},
+    ]
+    let tasksTable = document.getElementById('tasksTable');
+    //View
+    updateView();
+    function updateView(){
+        let html = `
+        <tr>
+            <th>Oppgave</th>
+            <th>Gjort</th>
+        </tr>`;
+    for (let task of tasks) {
+        const checkedHtml = tasks.isDone ? 'checked="checked"' : '';
+        html += `<tr>
+            <td>${tasks.description}</td>
+            <td><input type="checkbox" ${checkedHtml}/></td>
+            </tr>`;
+    }
+    tasksTable.innerHTML = html;
+    }
+
+    //Controller
+    function addTask(){
+
+    }
+
+</script>
+</html>
