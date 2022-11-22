@@ -28,8 +28,10 @@
 </head>
 <body>
     <table>
-        <div id="tasksTable"></div>
-        
+        <tr>
+            <th>Oppgave</th>
+            <th>Gjort</th>
+        </tr>        
         <tr>
             <td>Handle til middag</td>
             <td><input type="checkbox"></td>
@@ -69,35 +71,7 @@
     </table>
 </body>
 <script>
-    //Model
-    let taskDescriptionInput = document.g
-    let tasks = [
-        {description: 'Handle til middag', isDone: false},
-        {description: 'Lage middag', isDone: false},
-    ]
-    let tasksTable = document.getElementById('tasksTable');
-    //View
-    updateView();
-    function updateView(){
-        let html = `
-        <tr>
-            <th>Oppgave</th>
-            <th>Gjort</th>
-        </tr>`;
-    for (let task of tasks) {
-        const checkedHtml = tasks.isDone ? 'checked="checked"' : '';
-        html += `<tr>
-            <td>${tasks.description}</td>
-            <td><input type="checkbox" ${checkedHtml}/></td>
-            </tr>`;
-    }
-    tasksTable.innerHTML = html;
-    }
-
-    //Controller
-    function addTask(){
-
-    }
+  
 
 </script>
 </html>
