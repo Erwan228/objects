@@ -49,9 +49,10 @@
     var taskDescriptionInput = document.getElementById('taskDescription');
     let personNameInput = document.getElementById('personName')
     let convertedDate = '';
+    let dateinput = document.getElementById('deadLine');
 
     function addTask() {
-        convertedDate = new Date(document.getElementById('deadLine').value).toLocaleDateString();
+        convertedDate = new Date(dateinput.value).toLocaleDateString();
         tasks.push({
             description: taskDescriptionInput.value,
             isDone: false,
@@ -60,6 +61,8 @@
         });
         taskDescriptionInput.value = '';
         personNameInput.value = '';
+        dateinput.value = '';
+
         
         show();
     }
