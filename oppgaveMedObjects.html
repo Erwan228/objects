@@ -5,6 +5,9 @@
     <meta charset="utf-8" />
     <title></title>
     <style>
+        body{
+            user-select: none;
+        }
         table, tr, td, th {
             border: 1px solid lightgray;
             border-collapse: collapse;
@@ -75,10 +78,11 @@
         let html = `
                         <tr>
                             <th>Oppgave</th>
-                            <th>Gjort</th>
-                            <th></th>
                             <th>Person</th>
                             <th>Frist</th>
+                            <th>Gjort</th>
+                            <th></th>
+                            <th>Tid oppgaven ble gjort</th>
                         </tr>`;
         for (let i = 0; i < tasks.length; i++) {
             html += createHtmlRow(i);
@@ -89,26 +93,41 @@
     function createHtmlRow(i) {
         const task = tasks[i];
         const checkedHtml = task.isDone ? 'checked="checked"' : '';
-        if (!task.editMode)
-            return `<tr>
+        if(task.isDone){task.timeDone = new Date();
+        return `
+        <tr>
                             <td>${task.description}</td>
+                            <td>${task.name}</td>
+                            <td>${task.deadline}</td>
                             <td><input onchange="changeIsDone(this, ${i})" type="checkbox" ${checkedHtml} /></td>
                             <td>
                                 <button onclick="deleteTask(${i})">Slett</button>
                                 <button onclick="editTask(${i})">Rediger</button>
-                            </td>
+                                </td>
+                                <td>${task.timeDone}</td>
+                        </tr>
+        `}
+        if (!task.editMode)
+            return `<tr>
+                            <td>${task.description}</td>
                             <td>${task.name}</td>
                             <td>${task.deadline}</td>
+                            <td><input onchange="changeIsDone(this, ${i})" type="checkbox" ${checkedHtml} /></td>
+                            <td>
+                                <button onclick="deleteTask(${i})">Slett</button>
+                                <button onclick="editTask(${i})">Rediger</button>
+                                </td>
+                                <td>Ikke gjort enda</td>
                         </tr>
                         `;
         return `<tr>
                             <td><input id="editDescription${i}" type="text" value="${task.description}"/></td>
+                            <td><input id="editName${i}" type="text" value="${task.name}"/></td>
+                            <td><input id="editDeadline${i}" type="date" value="${task.deadline}"/></td>
                             <td><input onchange="changeIsDone(this, ${i})" type="checkbox" ${checkedHtml} /></td>
                             <td>
                                 <button onclick="updateTask(${i})">Lagre</button>
-                            </td>
-                            <td><input id="editName${i}" type="text" value="${task.name}"/></td>
-                            <td><input id="editDeadline${i}" type="date" value="${task.deadline}"/></td>
+                                </td>
                         </tr>
                         `;
     }
